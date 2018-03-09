@@ -1,22 +1,36 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
+  array.each do |elem|
+    array.delete(elem) if elem.chars.first != 'a'
+  end
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+  ### The problem here is that we mutate the array as we iterate through it
+  ### So it is always skipping David
+  # array.each do |elem|
+  #   p elem
+  #   array.delete(elem) if elem !~ /^[aeiou]/
+  # end
+
+  array.delete_if { |elem| elem !~ /^[aeiou]/ }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
+  array.delete_if { |elem| elem == nil }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+  array.delete_if { |elem| elem == nil || elem == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
+  array.each { |elem| elem.reverse! }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
